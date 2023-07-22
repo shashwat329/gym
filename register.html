@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration page</title>
+    <link rel="stylesheet" href="css/animate.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" href="/css/register.css">
+  <style>
+    .wow:first-child {
+      visibility: hidden;
+    }
+  </style>
+  
+</head>
+<body>
+    <!-- header starts -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                 <a href="">Muscle <span>Factory</span></a>
+            </div>
+            <a href="javascript:void(0)" class="ham-burger">
+              <span></span>	
+              <span></span>
+            </a>
+            <div class="nav">
+                <ul>
+                    <li><a href="../index.html">Home</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <!-- header ends -->
+    <!-- form starts -->
+    <h1>Gym Registration Form</h1>
+    <form action="https://sheetdb.io/api/v1/bcjmhyrer3qsw" method="post" id="sheetdb-form">
+        <label for="fullname">Full Name:</label>
+        <input type="text" id="fullname" name="data[fullname]" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="data[email]" required>
+
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" name="data[phone]" required>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="data[age]" required>
+
+        <label for="gender">Gender:</label>
+        <input type="radio" id="male" name="data[gender]" value="male" required>
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="data[gender]" value="female">
+        <label for="female">Female</label>
+        <label for="date">Joining date</label>
+        <input type="date" id="date" name="data[joining date]" value="date">
+
+
+        <label for="membership">Membership Type:</label>
+        <select id="membership" name="data[membership]" required>
+            <option value="monthly">Monthly</option>
+            <option value="quaterly">Quaterly</option>
+            <option value="yearly">Yearly</option>
+        </select>
+
+        <label for="goals">Fitness Goals:</label>
+        <textarea id="goals" name="data[goals]" rows="4" required></textarea>
+
+        <input type="submit" value="Register">
+    </form>
+     <!-- forms ends -->
+ <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script  src="js/script.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script>
+        	$(document).ready(function(){
+
+$(".ham-burger, .nav ul li a").click(function(){
+ 
+  $(".nav").toggleClass("open")
+
+  $(".ham-burger").toggleClass("active");
+})      
+$(".accordian-container").click(function(){
+    $(".accordian-container").children(".body").slideUp();
+    $(".accordian-container").removeClass("active")
+    $(".accordian-container").children(".head").children("span").removeClass("fa-angle-down").addClass("fa-angle-up")
+    $(this).children(".body").slideDown();
+    $(this).addClass("active")
+    $(this).children(".head").children("span").removeClass("fa-angle-up").addClass("fa-angle-down")
+})
+
+ $(".nav ul li a, .go-down").click(function(event){
+   if(this.hash !== ""){
+
+        event.preventDefault();
+
+        var hash=this.hash; 
+
+        $('html,body').animate({
+          scrollTop:$(hash).offset().top
+        },800 , function(){
+           window.location.hash=hash;
+        });
+
+        // add active class in navigation
+        $(".nav ul li a").removeClass("active")
+        $(this).addClass("active")
+   }
+})
+})
+    </script>
+    <script>
+        wow = new WOW(
+          {
+            animateClass: 'animated',
+            offset:       0,
+          }
+        );
+        wow.init();
+      </script>
+       <script>
+        var form = document.getElementById('sheetdb-form');
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+      fetch(form.action, {
+          method : "POST",
+          body: new FormData(document.getElementById("sheetdb-form")),
+      }).then(
+          response => response.json()
+      ).then((html) => {
+        // you can put any JS code here
+        window.open('index.html', '_blank');
+
+      });
+    });
+    </script>
+</body>
+</html>
